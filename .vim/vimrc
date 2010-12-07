@@ -140,13 +140,16 @@ map Y y$
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
-nnoremap <C-L> :nohl<CR><C-L>
+" nnoremap <C-L> :nohl<CR><C-L>
 
 "------------------------------------------------------------
 " Personal config
+"
+" MVIM FAQ: https://github.com/b4winckler/macvim/wiki/FAQ
 
 map <C-T> :CommandT<CR>
 map <F2>  :NERDTreeToggle<CR>
+nnoremap <silent> <F8> :TlistToggle<CR>
 
 set background=dark
 set incsearch
@@ -156,5 +159,23 @@ set wildmode=list:longest
 
 " Set underscore as word movement delimiter (meh)
 " set iskeyword-=_
+
+" Paste into the current selection with r
+vmap r "_dP
+
+" Don't fold anything (within reason)
+" set foldlevel=200
+set nofoldenable
+
+set grepprg=ack\ --ignore-dir\ extlib
+
+" Ease window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+let mapleader = ","
+nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 "------------------------------------------------------------
