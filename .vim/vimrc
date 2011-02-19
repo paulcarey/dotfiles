@@ -178,4 +178,7 @@ map <C-l> <C-w>l
 let mapleader = ","
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
+" vimclojure support
+let vimclojure#HighlightBuiltins = 1
+
 "------------------------------------------------------------
