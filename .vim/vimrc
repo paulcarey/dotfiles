@@ -148,6 +148,7 @@ map Y y$
 " MVIM FAQ: https://github.com/b4winckler/macvim/wiki/FAQ
 
 map <C-T> :CommandT<CR>
+map <F6> :TlistToggle<CR>
 map <F2>  :NERDTreeToggle<CR>
 nnoremap <silent> <F8> :TlistToggle<CR>
 
