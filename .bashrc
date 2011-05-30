@@ -4,7 +4,15 @@ export PATH=/usr/local/bin:/Users/paulcarey/dev/scripts:$PATH
 
 export EDITOR=/usr/bin/vim
 
-export GIT_EDITOR='mvim -f -c "au VimLeave * !open -a Terminal"'
+# No longer desired with tmux
+# export GIT_EDITOR='mvim -f -c "au VimLeave * !open -a iTerm"'
+
+# Required for tmux only I think
+export GIT_PAGER='less -R'
+export GIT_EDITOR='mvim -f'
+
+export LSCOLORS='cxfxcxdxbxegedabagacad'
+
 export NODE_ENV=development
 
 export LESS="-i -j.25"

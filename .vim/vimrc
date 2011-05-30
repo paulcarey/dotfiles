@@ -147,7 +147,10 @@ map Y y$
 "
 " MVIM FAQ: https://github.com/b4winckler/macvim/wiki/FAQ
 
-map <C-T> :CommandT<CR>
+" Use default mappings to open Command-T
+" map <C-T> :CommandT<CR>
+let g:CommandTMatchWindowReverse=1
+
 map <F6> :TlistToggle<CR>
 map <F2>  :NERDTreeToggle<CR>
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -170,6 +173,24 @@ set nofoldenable
 
 set grepprg=ack\ --ignore-dir\ extlib
 
+set gdefault
+
+nnoremap j gj
+nnoremap k gk
+
+" Hmm, not so sure
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Ideas from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+" Consider some of the following
+
+" nnoremap / /\v
+" vnoremap / /\v
+
+" Save a shift
+" nnoremap ; :
+
 " Ease window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -178,6 +199,10 @@ map <C-l> <C-w>l
 
 let mapleader = ","
 nmap <silent> <leader>n :silent :nohlsearch<CR>
+
+nnoremap <leader>a :Ack 
+
+let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir extlib"
 
 " vimclojure support
 let vimclojure#HighlightBuiltins = 1
