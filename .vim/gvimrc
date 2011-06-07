@@ -26,3 +26,8 @@ function Medio()
   set lines=55
   set columns=130
 endfunction
+
+function Grande()
+  set lines=55
+  set columns=175
+endfunction

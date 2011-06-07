@@ -103,7 +103,7 @@ set mouse=a
 set cmdheight=2
 
 " Display line numbers on the left
-set number
+" set number - overridden by set relativenumber
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -178,9 +178,10 @@ set gdefault
 nnoremap j gj
 nnoremap k gk
 
-" Hmm, not so sure
-nnoremap <tab> %
-vnoremap <tab> %
+" Hmm, not so sure - actually, I think tab is the same as ^I and hence broke
+" navigation
+" nnoremap <tab> %
+" vnoremap <tab> %
 
 " Ideas from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " Consider some of the following

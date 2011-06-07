@@ -1,8 +1,14 @@
 set -o vi
 
-export PATH=/usr/local/bin:/Users/paulcarey/dev/scripts:$PATH
+path=/usr/local/bin:
+path+=/usr/local/sbin:
+path+=/Users/paulcarey/dev/scripts:
+path+=/Users/paulcarey/dev/scala-2.9.0.1/bin:
+export PATH=$path:$PATH
+# export PATH=/usr/local/bin:/Users/paulcarey/dev/scripts:$PATH
 
 export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 
 # No longer desired with tmux
 # export GIT_EDITOR='mvim -f -c "au VimLeave * !open -a iTerm"'
