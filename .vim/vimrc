@@ -151,9 +151,9 @@ map Y y$
 " map <C-T> :CommandT<CR>
 let g:CommandTMatchWindowReverse=1
 
-map <F6> :TlistToggle<CR>
+map <F6> :TagbarToggle<CR>
 map <F2>  :NERDTreeToggle<CR>
-nnoremap <silent> <F8> :TlistToggle<CR>
+" nnoremap <silent> <F8> :TlistToggle<CR>
 
 set background=dark
 set incsearch
