@@ -1,14 +1,7 @@
 set -o vi
 
-path=/usr/local/bin:
-path+=/usr/local/sbin:
-path+=/Users/paulcarey/dev/scripts:
-path+=/Users/paulcarey/dev/scala-2.9.0.1/bin:
-export PATH=$path:$PATH
-# export PATH=/usr/local/bin:/Users/paulcarey/dev/scripts:$PATH
-
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=$HOME/bin/vim
+export VISUAL=$HOME/bin/vim
 
 # No longer desired with tmux
 # export GIT_EDITOR='mvim -f -c "au VimLeave * !open -a iTerm"'
@@ -69,12 +62,12 @@ uuid () {
 #    You can subsequently move to one of the saved directories by using cd with
 #    the abbreviation you chose. Eg. cd ms  (Note that no '$' is necessary.)
 if [ ! -f ~/.dirs ]; then  # if doesn't exist, create it
-    touch ~/.dirs
-  fi
+  touch ~/.dirs
+fi
 
-  alias show='cat ~/.dirs'
-  save (){
-      command sed "/!$/d" ~/.dirs > ~/.dirs1; \mv ~/.dirs1 ~/.dirs; echo "$@"=\"`pwd`\" >> ~/.dirs; source ~/.dirs ; 
-    }
-    source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
-    shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
+alias show='cat ~/.dirs'
+save () {
+  command sed "/!$/d" ~/.dirs > ~/.dirs1; \mv ~/.dirs1 ~/.dirs; echo "$@"=\"`pwd`\" >> ~/.dirs; source ~/.dirs ; 
+}
+source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
+shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility

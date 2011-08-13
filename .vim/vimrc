@@ -208,4 +208,15 @@ let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir extlib"
 " vimclojure support
 let vimclojure#HighlightBuiltins = 1
 
+:nnoremap <silent> <leader>r :YRShow<CR>
+
 "------------------------------------------------------------
+"
+" let g:solarized_termcolors=256
+" let g:solarized_termtrans=1
+colorscheme solarized
+call togglebg#map("<F5>")
+
+set relativenumber
+set scrolloff=3
+" set cursorline

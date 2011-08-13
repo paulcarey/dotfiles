@@ -13,7 +13,7 @@ set guioptions=aAce
 " Precede the tab name with its number
 set guitablabel=%N\ %t
 
-colorscheme ir_black
+" colorscheme ir_black
 
 " Set transparency (possibly experimental renderer is required)
 " set transp=95
@@ -21,6 +21,9 @@ colorscheme ir_black
 set relativenumber
 set scrolloff=3
 set cursorline
+
+" Autosave when MacVim loses focus
+au FocusLost * silent! wa
 
 function Medio()
   set lines=55
