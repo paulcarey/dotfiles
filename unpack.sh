@@ -13,6 +13,8 @@ ln -s ~/dotfiles/.inputrc ~/.inputrc
 
 ln -s ~/dotfiles/.sbtconfig ~/.sbtconfig
 
+ln -s ~/dotfiles/.emacs.d/init.el ~/.emacs.d/init.el
+
 git submodule update --init
 
 # For Command-T
