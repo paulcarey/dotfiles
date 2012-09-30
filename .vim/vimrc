@@ -1,12 +1,6 @@
 " Derived from http://vim.wikia.com/wiki/Example_vimrc
 
 "------------------------------------------------------------
-" Pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
-
-"------------------------------------------------------------
 " Features {{{1
 "
 " These options and commands enable some very useful features in Vim, that
@@ -15,6 +9,49 @@ call pathogen#helptags()
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
+
+" Vundle config
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" original repos on github
+Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-fugitive'
+
+Bundle 'tpope/vim-commentary'
+Bundle 'godlygeek/tabular'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'nelstrom/vim-qargs'
+Bundle 'kien/ctrlp.vim'
+
+Bundle 'altercation/vim-colors-solarized'
+
+Bundle 'pangloss/vim-javascript'
+Bundle 'tpope/vim-markdown'
+Bundle 'groenewege/vim-less'
+
+" Bundle 'majutsushi/tagbar'
+
+" To consider:
+" Bundle 'tpope/vim-eunuch'
+"
+" Consider tabline to display number in tab
+
+" vim-scripts repos
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+
+" non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+
+" End Vundle config and re-enable filetype
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents.  Use this to allow intelligent auto-indenting for each filetype,
@@ -155,7 +192,6 @@ map <F6> :TagbarToggle<CR>
 map <F2>  :NERDTreeToggle<CR>
 " nnoremap <silent> <F8> :TlistToggle<CR>
 
-set background=dark
 set incsearch
 
 " Make tab completion for file names behave like bash
@@ -165,32 +201,28 @@ set wildmode=list:longest
 " set iskeyword-=_
 
 " Paste into the current selection with r
-vmap r "_dP
+" Commenting out as being able to replace a visual selection with a single
+" char is nice
+" vmap r "_dP
 
 " Don't fold anything (within reason)
 " set foldlevel=200
 set nofoldenable
 
+" delete this? should be per-proj?
 set grepprg=ack\ --ignore-dir\ extlib
 
+" Enable global substitution - set the g flag to on by default
 set gdefault
 
 nnoremap j gj
 nnoremap k gk
 
-" Hmm, not so sure - actually, I think tab is the same as ^I and hence broke
-" navigation
-" nnoremap <tab> %
-" vnoremap <tab> %
-
 " Ideas from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " Consider some of the following
 
-" nnoremap / /\v
-" vnoremap / /\v
-
-" Save a shift
-" nnoremap ; :
+nnoremap / /\v
+vnoremap / /\v
 
 " Ease window navigation
 map <C-h> <C-w>h
@@ -203,20 +235,58 @@ nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 nnoremap <leader>a :Ack 
 
-let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir extlib"
+" No longer required as ignore-dir is taken from ackrc env and ackprg is the
+" default provided by ack.vim
+" let g:ackprg="ack --with-filename --nocolor --nogroup --column"
 
 " vimclojure support
 let vimclojure#HighlightBuiltins = 1
 
 :nnoremap <silent> <leader>r :YRShow<CR>
 
+set wildignore+=*.class
+
 "------------------------------------------------------------
 "
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1
+set background=dark
 colorscheme solarized
 call togglebg#map("<F5>")
 
 set relativenumber
 set scrolloff=3
+
+" Scroll horizontally smoothly and keep some context visible
+set sidescroll=1
+set sidescrolloff=5
+
 " set cursorline
+
+" load proj specific setup
+if filereadable(".vimrc.paulcarey.custom")
+  so .vimrc.paulcarey.custom
+endif
+
+" Practical Vim additions
+
+nnoremap ]t :tnext<CR>
+nnoremap [t :tprev<CR>
+nnoremap [T :tfirst<CR>
+nnoremap ]T :tlast<CR>
+
+" Scroll through history command using Emacs chords while preserving the
+" filtering offered by the cursor keys. For example, if the command contains
+" ':h ', typing <Up> would only show those commands starting with ':h '.
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+" this is where I'm editing
+
+" From http://vimcasts.org/episodes/the-edit-command/
+" but I think ctrlp generally takes care of all of this
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+runtime macros/matchit.vim
+

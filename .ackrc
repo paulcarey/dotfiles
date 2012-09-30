@@ -1,2 +1,7 @@
+#
+# /Users/paulcarey/.ackrc
+#
+
 --type-set=less=.less
 --type-set=gradle=.gradle
+
