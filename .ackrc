@@ -4,4 +4,5 @@
 
 --type-set=less=.less
 --type-set=gradle=.gradle
+--type-set=handlebars=.handlebars
 

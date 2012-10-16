@@ -23,9 +23,11 @@ Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
 
 Bundle 'altercation/vim-colors-solarized'
 
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-markdown'
 Bundle 'groenewege/vim-less'
@@ -92,6 +94,7 @@ set notimeout ttimeout ttimeoutlen=200
 
 " Appearance {{{1
 
+set listchars=tab:▸\ ,eol:¬
 set cursorline
 set ruler
 set laststatus=2
@@ -120,6 +123,7 @@ set expandtab
 " set pastetoggle=<F11>
 map Y y$
 nmap <silent> <leader>n :silent :nohlsearch<CR>
+map <leader>l :set list!<CR>
 call togglebg#map("<F6>")
 map <F7> :set relativenumber!<CR>
 
@@ -153,6 +157,8 @@ cnoremap <C-n> <Down>
 
 nnoremap <leader>a :Ack 
 
+map <leader>t :NERDTreeToggle<CR>
+
 " Not sure I'll return to YankRing
 " nnoremap <silent> <leader>r :YRShow<CR>
 
@@ -160,6 +166,20 @@ nnoremap <leader>a :Ack
 
 iabbr destory destroy
 iabbr reponse response
+
+" Whitespace prefs and filetypes {{{1
+
+autocmd BufNewFile,BufRead *.gradle set filetype=groovy
+autocmd BufNewFile,BufRead *.tmpl setfiletype html
+autocmd BufNewFile,BufRead *.mustache set filetype=html
+autocmd BufNewFile,BufRead *.handlebars set filetype=html
+
+" Setting local FileType
+" autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+
+" Netrw config {{{1
+
+let g:netrw_liststyle = 3
 
 " Lifted from Practical Vim {{{1
 
@@ -193,4 +213,6 @@ function! QuickfixFilenames()
   endfor
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
+
+let g:netrw_liststyle=4
 

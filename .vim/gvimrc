@@ -18,19 +18,20 @@ set guitablabel=%N\ %t
 " Set transparency (possibly experimental renderer is required)
 " set transp=95
 
-set relativenumber
+" set relativenumber
+set number
 set scrolloff=3
 set cursorline
 
 " Autosave when MacVim loses focus
 au FocusLost * silent! wa
 
-function Medio()
+function! Medio()
   set lines=55
   set columns=130
 endfunction
 
-function Grande()
-  set lines=55
-  set columns=175
+function! Grande()
+  set lines=49
+  set columns=179
 endfunction
