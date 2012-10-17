@@ -64,13 +64,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; Add ocaml-emacs support
-(setq auto-mode-alist
-          (cons '("\\.ml[iyl]?$" .  caml-mode) auto-mode-alist))
-
-(setq load-path (cons "/Users/paulcarey/.emacs.d/paulcarey/ocaml-emacs" load-path))
-
-(autoload 'caml-mode "ocaml" (interactive)
-  "Major mode for editing Caml code." t)
-(autoload 'camldebug "camldebug" (interactive) "Debug caml mode")
