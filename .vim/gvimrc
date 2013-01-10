@@ -35,3 +35,9 @@ function! Grande()
   set lines=49
   set columns=179
 endfunction
+
+function! Maximo()
+  set lines=1000
+  set columns=1000
+endfunction
+

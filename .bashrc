@@ -1,5 +1,8 @@
 set -o vi
 
+alias localrc='. ../.dotfiles/paulcarey/.bashrc'
+
+
 export EDITOR=$HOME/bin/vim
 export VISUAL=$HOME/bin/vim
 
@@ -19,6 +22,14 @@ export LESS="-i -j.25"
 export SS_DIR="/Users/paulcarey/dev/o2/tfds/smartsteps"
 alias cdo2='cd ${SS_DIR}'
 
+function o2 {
+  cd ${SS_DIR} && source ../.dotfiles/paulcarey/.bashrc && set_o2ic_env
+}
+export -f o2
+
+export GLI_DIR="/Users/paulcarey/dev/glean.in/hashmore"
+alias cdgli='cd ${GLI_DIR}'
+
 alias gd='git diff --color-words'
 alias gst='git status'
 alias datestamp="date '+%Y-%m-%d'"
@@ -26,10 +37,14 @@ alias datestamp="date '+%Y-%m-%d'"
 alias h='heroku'
 alias mv='mv -i'
 
+alias mysqlroot='mysql -u root -ppassword'
+alias mysqlstart='mysql.server start'
+
 alias cdzc='cd ~/dev/zonecode'
 alias cdace='cd ~/dev/libs/ace'
 alias ltpweb='cd /Users/paulcarey/dev/projects/clojure/ltp-web'
-alias clj='cd /Users/paulcarey/dev/projects/clojure/scratch'
+alias tr='cd /Users/paulcarey/dev/projects/clojure/tr'
+alias did='cd /Users/paulcarey/dev/projects/mobile/dialitdown'
 
 alias ls='ls -G'
 alias tree='tree -C'
@@ -39,10 +54,15 @@ alias qvim='vim -u ~/.qvimrc'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 # Find file
-alias ff='ack -a -f | ack '
+alias ff='ack -a -f -i | ack '
+alias fff='ack --noenv -a -f -i | ack '
 
+# Ruby
+alias ber='bundle exec rake'
+
+# Couldn't get $@ to work, hence $1 $2 etc.
 function man {
-  qvim -c ":Man $1" -c ":only"
+  qvim -c ":map q :q<CR>" -c ":Man $1 $2 $3" -c ":only"
 }
 
 # Disabling so I don't acidentally overwrite my new emacs config
@@ -84,9 +104,18 @@ set_java7_env () {
   export PATH=/Library/Java/JavaVirtualMachines/jdk1.7.0_06.jdk/Contents/Home/bin:$PATH
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_06.jdk/Contents/Home
 }
+export -f set_java7_env
 
 # string concatentation in awk
 # git ls-files | sort | awk -F '/' '{s=""; for(i=1; i < NF; i++) s=(s "/" $i); print s}'
+
+# lscolor converter http://geoff.greer.fm/lscolors/
+
+# for bsd ls
+# export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
+# for tree
+# export LS_COLORS='di=36;40:ln=35;40:so=31;:pi=0;:ex=1;;40:bd=0;:cd=37;:su=37;:sg=0;:tw=0;:ow=0;:'
 
 ## Navigation
 
@@ -112,3 +141,5 @@ save () {
 }
 source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
 shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

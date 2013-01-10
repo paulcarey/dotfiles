@@ -5,4 +5,7 @@
 --type-set=less=.less
 --type-set=gradle=.gradle
 --type-set=handlebars=.handlebars
+--type-set=properties=.properties
+--type-set=erb=.erb
+--type-set=coffee=.coffee
 

@@ -28,17 +28,25 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-markdown'
 Bundle 'groenewege/vim-less'
 
+Bundle 'kchmck/vim-coffee-script'
+
+Bundle 'vim-scripts/VimClojure'
+
 " To consider:
+
 " Bundle 'tpope/vim-eunuch'
+
 " Consider tabline to display number in tab
 
 " ------------------------
 
 let mapleader = ","
+" noremap \ ,
 
 " Load Vim plugins {{{1
 runtime macros/matchit.vim
@@ -110,6 +118,8 @@ set sidescrolloff=5
 set background=dark
 colorscheme solarized
 
+let NERDTreeWinSize=50
+
 " Indentation {{{1
 
 set tabstop=2
@@ -149,18 +159,21 @@ nnoremap [t :tprev<CR>
 nnoremap [T :tfirst<CR>
 nnoremap ]T :tlast<CR>
 
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+
 " Scroll through history command using Emacs chords while preserving the
 " filtering offered by the cursor keys. For example, if the command contains
 " ':h ', typing <Up> would only show those commands starting with ':h '.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack! 
 
 map <leader>t :NERDTreeToggle<CR>
-
-" Not sure I'll return to YankRing
-" nnoremap <silent> <leader>r :YRShow<CR>
+map <leader>f :NERDTreeFind<CR>
 
 " Abbreviations {{{1
 
@@ -169,10 +182,12 @@ iabbr reponse response
 
 " Whitespace prefs and filetypes {{{1
 
-autocmd BufNewFile,BufRead *.gradle set filetype=groovy
-autocmd BufNewFile,BufRead *.tmpl setfiletype html
-autocmd BufNewFile,BufRead *.mustache set filetype=html
+autocmd BufNewFile,BufRead *.tmpl       set filetype=html
+autocmd BufNewFile,BufRead *.mustache   set filetype=html
 autocmd BufNewFile,BufRead *.handlebars set filetype=html
+autocmd BufNewFile,BufRead *.ejs        set filetype=html
+autocmd BufNewFile,BufRead *.god        set filetype=ruby
+autocmd BufNewFile,BufRead *.gradle     set filetype=groovy
 
 " Setting local FileType
 " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
@@ -180,6 +195,10 @@ autocmd BufNewFile,BufRead *.handlebars set filetype=html
 " Netrw config {{{1
 
 let g:netrw_liststyle = 3
+
+" Plugin config {{{1
+
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Lifted from Practical Vim {{{1
 
