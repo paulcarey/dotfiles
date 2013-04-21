@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 
 " Repos on github
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 " vim-fugitive adds to tags - not sure why
 Bundle 'tpope/vim-fugitive' 	
 
@@ -35,7 +36,13 @@ Bundle 'groenewege/vim-less'
 
 Bundle 'kchmck/vim-coffee-script'
 
+Bundle 'mattn/zencoding-vim'
+
 Bundle 'vim-scripts/VimClojure'
+
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'michaeljsmith/vim-indent-object'
 
 " To consider:
 
@@ -170,15 +177,38 @@ nnoremap ]Q :clast<CR>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <leader>a :Ack! 
+nnoremap <leader>k :Ack! 
+nnoremap <leader>a :Ag 
 
 map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
+
+" Mnemonic is m for method, f for function or t for tag would be better
+nnoremap <leader>m :tag 
+
+nnoremap <leader>p :CtrlPClearCache<CR>
+
+nnoremap <leader>c :wa <bar> :!coffee -bc %<CR>
+
+" Use spring rather than bundle
+
+let g:vroom_use_spring = 1
+let g:vroom_use_binstubs = 1
+let g:vroom_use_color = 1
+let g:vroom_test_unit_command = 'testunit'
+
+map <leader>r :wa <bar> !bin/testunit %<CR>
 
 " Abbreviations {{{1
 
 iabbr destory destroy
 iabbr reponse response
+
+" Useful for Jasmine specs
+"
+abbr desc describe '', -><ESC>F'i
+abbr itsh it 'should', -><ESC>F'a
+
 
 " Whitespace prefs and filetypes {{{1
 
@@ -189,12 +219,22 @@ autocmd BufNewFile,BufRead *.ejs        set filetype=html
 autocmd BufNewFile,BufRead *.god        set filetype=ruby
 autocmd BufNewFile,BufRead *.gradle     set filetype=groovy
 
+
+autocmd BufNewFile,BufRead *.coffee set includeexpr=CoffeeScriptIncludeExpr()
+autocmd User Rails.javascript.coffee* set includeexpr=CoffeeScriptIncludeExpr()
+autocmd User Rails.javascript.coffee* set path=app/assets/javascripts/**
+autocmd User Rails.javascript.coffee* nunmap <buffer> gf
+
 " Setting local FileType
 " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
 
 " Netrw config {{{1
 
 let g:netrw_liststyle = 3
+
+" CtrlP config {{{1
+
+let g:ctrlp_switch_buffer = 'et'
 
 " Plugin config {{{1
 
@@ -234,4 +274,14 @@ function! QuickfixFilenames()
 endfunction
 
 let g:netrw_liststyle=4
+
+
+" Add support for gf with CoffeeScript
+function! CoffeeScriptIncludeExpr()
+  let match = '\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)'
+  let fqn = substitute(v:fname, match, '\l\1_\l\2', 'g')
+  let parts = split(fqn, '\.')
+  let fn = parts[-1]
+  return join([fn, '.js.coffee'], '')
+endfunction
 

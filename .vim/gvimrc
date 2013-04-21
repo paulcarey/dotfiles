@@ -1,9 +1,9 @@
-" @todo - yankring, fugitive, rubydo, \v in regexps
 "
 set guioptions-=T
 " set guifont=Monaco:h12
 " set guifont=Menlo:h14
-set guifont=Inconsolata:h15
+" set guifont=Inconsolata:h15
+set guifont=Terminus:h16
 set lines=35
 set columns=90
 
@@ -12,8 +12,6 @@ set guioptions=aAce
 
 " Precede the tab name with its number
 set guitablabel=%N\ %t
-
-" colorscheme ir_black
 
 " Set transparency (possibly experimental renderer is required)
 " set transp=95
@@ -40,4 +38,15 @@ function! Maximo()
   set lines=1000
   set columns=1000
 endfunction
+
+nnoremap <D-1> 1gt<CR>
+nnoremap <D-2> 2gt<CR>
+nnoremap <D-3> 3gt<CR>
+nnoremap <D-4> 4gt<CR>
+nnoremap <D-5> 5gt<CR>
+nnoremap <D-6> 6gt<CR>
+nnoremap <D-7> 7gt<CR>
+nnoremap <D-8> 8gt<CR>
+nnoremap <D-9> 9gt<CR>
+nnoremap <D-0> :tablast<CR>
 
