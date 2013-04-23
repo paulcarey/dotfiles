@@ -21,9 +21,6 @@
 --regex-groovy=/^[ \t]*[abstract ( \t)]*[(private|public) ( \t)]*class[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/c,class,classes/
 --regex-groovy=/^[ \t]*[abstract ( \t)]*[(private|public) ( \t)]*enum[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/c,class,classes/
 
-# Detects classes, static/class methods, plain functions and variables.
-# To use, place it in a ~/.ctags file.
- 
 --langdef=coffee
 --langmap=coffee:.coffee
 --regex-coffee=/(^|=[ \t])*class ([A-Za-z.]+)( extends [A-Za-z.]+)?$/\2/c,class/

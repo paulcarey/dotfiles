@@ -7,5 +7,9 @@
 --type-set=handlebars=.handlebars
 --type-set=properties=.properties
 --type-set=erb=.erb
+--type-set=ejs=.ejs
+--type-set=eco=.eco
 --type-set=coffee=.coffee
+--type-set=scss=.scss
+--type-set=rstat=.r
 

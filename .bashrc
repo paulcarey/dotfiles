@@ -3,7 +3,7 @@ set -o vi
 alias localrc='. ../.dotfiles/paulcarey/.bashrc'
 
 
-export EDITOR=$HOME/bin/vim
+export EDITOR='$HOME/bin/vim -u $HOME/.qvimrc'
 export VISUAL=$HOME/bin/vim
 
 # No longer desired with tmux
@@ -27,8 +27,23 @@ function o2 {
 }
 export -f o2
 
-export GLI_DIR="/Users/paulcarey/dev/glean.in/hashmore"
+export GLI_DIR="/Users/paulcarey/dev/glean.in/hashmore_evolved"
 alias cdgli='cd ${GLI_DIR}'
+gli () {
+  init-proj-env $GLI_DIR
+}
+
+alias glit='bundle exec rake fast=true test'
+
+init-proj-env () {
+  PROJ_DIR=$1
+  cd $PROJ_DIR && source ${PROJ_DIR}/.dotfiles/paulcarey/.bashrc && init
+}
+
+cfe () {
+  coffee -bps
+}
+export -f cfe
 
 alias gd='git diff --color-words'
 alias gst='git status'
@@ -37,8 +52,9 @@ alias datestamp="date '+%Y-%m-%d'"
 alias h='heroku'
 alias mv='mv -i'
 
-alias mysqlroot='mysql -u root -ppassword'
-alias mysqlstart='mysql.server start'
+alias be='bundle exec'
+alias ber='bundle exec rails'
+alias bek='bundle exec rake'
 
 alias cdzc='cd ~/dev/zonecode'
 alias cdace='cd ~/dev/libs/ace'
@@ -54,15 +70,13 @@ alias qvim='vim -u ~/.qvimrc'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 # Find file
-alias ff='ack -a -f -i | ack '
-alias fff='ack --noenv -a -f -i | ack '
+alias ff='ack -a -f | ack -i '
+alias fff='ack --noenv -a -f | ack -i '
 
-# Ruby
-alias ber='bundle exec rake'
 
 # Couldn't get $@ to work, hence $1 $2 etc.
 function man {
-  qvim -c ":map q :q<CR>" -c ":Man $1 $2 $3" -c ":only"
+  qvim -c ":map q :q<CR>" -c ":Man $1 $2 $3" -c ":only | :set ts=8"
 }
 
 # Disabling so I don't acidentally overwrite my new emacs config

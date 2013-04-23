@@ -44,6 +44,9 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'michaeljsmith/vim-indent-object'
 
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'goldfeld/vim-seek'
+
 " To consider:
 
 " Bundle 'tpope/vim-eunuch'
@@ -188,14 +191,14 @@ nnoremap <leader>m :tag
 
 nnoremap <leader>p :CtrlPClearCache<CR>
 
-nnoremap <leader>c :wa <bar> :!coffee -bc %<CR>
+nnoremap <silent> <leader>c :wa <bar> :silent :!coffee -bc %<CR>
+vnoremap <leader>x :!coffee -bps<CR>
 
-" Use spring rather than bundle
+nnoremap <leader>z :Tabularize /
 
-let g:vroom_use_spring = 1
-let g:vroom_use_binstubs = 1
-let g:vroom_use_color = 1
-let g:vroom_test_unit_command = 'testunit'
+
+" Filter the current file through ack - better than :g/
+" map filter :%! ack 
 
 map <leader>r :wa <bar> !bin/testunit %<CR>
 
@@ -207,7 +210,7 @@ iabbr reponse response
 " Useful for Jasmine specs
 "
 abbr desc describe '', -><ESC>F'i
-abbr itsh it 'should', -><ESC>F'a
+abbr itsh it 'should ', -><ESC>F'i
 
 
 " Whitespace prefs and filetypes {{{1
@@ -284,4 +287,5 @@ function! CoffeeScriptIncludeExpr()
   let fn = parts[-1]
   return join([fn, '.js.coffee'], '')
 endfunction
+
 
