@@ -14,7 +14,8 @@ set guioptions=aAce
 set guitablabel=%N\ %t
 
 " Set transparency (possibly experimental renderer is required)
-" set transp=95
+" Disabled by default for git editor - use vim instead of mvim...
+" set transp=45
 
 " set relativenumber
 set number
