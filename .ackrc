@@ -13,3 +13,5 @@
 --type-set=scss=.scss
 --type-set=rstat=.r
 
+--ignore-file=match:/.*log$/
+

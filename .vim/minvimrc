@@ -5,59 +5,20 @@ set nocompatible
 "
 " Vundle config
 "
-filetype off
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-
-" Repos on github
-Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
-" vim-fugitive adds to tags - not sure why
-Bundle 'tpope/vim-fugitive' 	
-
-Bundle 'tpope/vim-commentary'
-Bundle 'godlygeek/tabular'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-
-Bundle 'altercation/vim-colors-solarized'
-
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-markdown'
-Bundle 'groenewege/vim-less'
-
-Bundle 'kchmck/vim-coffee-script'
-
-Bundle 'mattn/zencoding-vim'
-
-Bundle 'vim-scripts/VimClojure'
-Bundle 'derekwyatt/vim-scala'
-
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'michaeljsmith/vim-indent-object'
-
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'goldfeld/vim-seek'
 
 " To consider:
-
 " Bundle 'tpope/vim-eunuch'
-
 " Consider tabline to display number in tab
 
 " ------------------------
 
 let mapleader = ","
-" noremap \ ,
 
 " Load Vim plugins {{{1
 runtime macros/matchit.vim
@@ -111,9 +72,6 @@ set mouse=a
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
-" Useful for html and css
-set iskeyword+=-
-
 " Appearance {{{1
 
 set listchars=tab:▸\ ,eol:¬
@@ -131,8 +89,6 @@ set sidescrolloff=5
 
 set background=dark
 colorscheme solarized
-
-let NERDTreeWinSize=50
 
 " Indentation {{{1
 
@@ -173,66 +129,30 @@ nnoremap [t :tprev<CR>
 nnoremap [T :tfirst<CR>
 nnoremap ]T :tlast<CR>
 
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprev<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
-
 " Scroll through history command using Emacs chords while preserving the
 " filtering offered by the cursor keys. For example, if the command contains
 " ':h ', typing <Up> would only show those commands starting with ':h '.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <leader>k :Ack! 
-nnoremap <leader>a :Ag 
+nnoremap <leader>a :Ack 
 
 map <leader>t :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
 
-" Mnemonic is m for method, f for function or t for tag would be better
-nnoremap <leader>m :tag 
-
-nnoremap <leader>p :CtrlPClearCache<CR>
-
-nnoremap <silent> <leader>c :wa <bar> :silent :!coffee -bc %<CR>
-vnoremap <leader>x :!coffee -bps<CR>
-
-nnoremap <leader>z :Tabularize /
-
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
-
-" Filter the current file through ack - better than :g/
-" map filter :%! ack 
-
-map <leader>r :wa <bar> !bin/testunit %<CR>
+" Not sure I'll return to YankRing
+" nnoremap <silent> <leader>r :YRShow<CR>
 
 " Abbreviations {{{1
 
 iabbr destory destroy
 iabbr reponse response
 
-" Useful for Jasmine specs
-"
-abbr desc describe '', -><ESC>F'i
-abbr itsh it 'should ', -><ESC>F'i
-
-
 " Whitespace prefs and filetypes {{{1
 
-autocmd BufNewFile,BufRead *.tmpl       set filetype=html
-autocmd BufNewFile,BufRead *.mustache   set filetype=html
+autocmd BufNewFile,BufRead *.gradle set filetype=groovy
+autocmd BufNewFile,BufRead *.tmpl setfiletype html
+autocmd BufNewFile,BufRead *.mustache set filetype=html
 autocmd BufNewFile,BufRead *.handlebars set filetype=html
-autocmd BufNewFile,BufRead *.ejs        set filetype=html
-autocmd BufNewFile,BufRead *.god        set filetype=ruby
-autocmd BufNewFile,BufRead *.gradle     set filetype=groovy
-
-
-autocmd BufNewFile,BufRead *.coffee set includeexpr=CoffeeScriptIncludeExpr()
-autocmd User Rails.javascript.coffee* set includeexpr=CoffeeScriptIncludeExpr()
-autocmd User Rails.javascript.coffee* set path=app/assets/javascripts/**
-autocmd User Rails.javascript.coffee* nunmap <buffer> gf
 
 " Setting local FileType
 " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
@@ -240,18 +160,6 @@ autocmd User Rails.javascript.coffee* nunmap <buffer> gf
 " Netrw config {{{1
 
 let g:netrw_liststyle = 3
-
-" CtrlP config {{{1
-
-let g:ctrlp_switch_buffer = 'et'
-
-
-" Disable the startup message
-set shortmess+=I
-
-" Plugin config {{{1
-
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Lifted from Practical Vim {{{1
 
@@ -287,15 +195,4 @@ function! QuickfixFilenames()
 endfunction
 
 let g:netrw_liststyle=4
-
-
-" Add support for gf with CoffeeScript
-function! CoffeeScriptIncludeExpr()
-  let match = '\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)'
-  let fqn = substitute(v:fname, match, '\l\1_\l\2', 'g')
-  let parts = split(fqn, '\.')
-  let fn = parts[-1]
-  return join([fn, '.js.coffee'], '')
-endfunction
-
 

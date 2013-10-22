@@ -1,9 +1,9 @@
 "
 set guioptions-=T
 " set guifont=Monaco:h12
-" set guifont=Menlo:h14
+set guifont=Menlo:h12
 " set guifont=Inconsolata:h15
-set guifont=Terminus:h16
+" set guifont=Terminus:h16
 set lines=35
 set columns=90
 
