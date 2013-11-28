@@ -1,1 +1,184 @@
-.qvimrc
+set nocompatible
+
+" To consider:
+" Bundle 'tpope/vim-eunuch'
+" Consider tabline to display number in tab
+
+" ------------------------
+
+let mapleader = ","
+
+" Load Vim plugins {{{1
+runtime macros/matchit.vim
+runtime ftplugin/man.vim
+
+" Behaviour {{{1
+
+filetype indent plugin on
+syntax on
+
+set hidden
+
+set wildmenu
+set wildmode=longest,list
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set backspace=indent,eol,start
+
+set gdefault
+
+set nofoldenable
+
+set nojoinspaces
+
+set history=200
+
+set wildignore+=*.class
+
+" Vestiges from http://vim.wikia.com/wiki/Example_vimrc {{{1
+
+" When opening a new line and no filetype-specific indenting is enabled, keep
+" the same indent as the line you're currently on. Useful for READMEs, etc.
+set autoindent
+
+" Stop certain movements from always going to the first character of a line.
+" While this behaviour deviates from that of Vi, it does what most users
+" coming from other editors would expect.
+set nostartofline
+
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
+
+" Enable use of the mouse for all modes
+set mouse=a
+
+" Quickly time out on keycodes, but never time out on mappings
+set notimeout ttimeout ttimeoutlen=200
+
+" Appearance {{{1
+
+set listchars=tab:▸\ ,eol:¬
+set cursorline
+set ruler
+set laststatus=2
+set showcmd
+set number
+set cmdheight=2
+set visualbell
+set t_vb=
+set scrolloff=5
+set sidescroll=1
+set sidescrolloff=5
+
+set background=dark
+
+" Indentation {{{1
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Mappings {{{1
+
+" Not needed if using "+p
+" set pastetoggle=<F11>
+map Y y$
+nmap <silent> <leader>n :silent :nohlsearch<CR>
+map <leader>l :set list!<CR>
+map <F7> :set relativenumber!<CR>
+
+" Operate on display lines by default
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
+" Ease window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+nnoremap ]a :next<CR>
+nnoremap [a :prev<CR>
+nnoremap [A :first<CR>
+nnoremap ]A :last<CR>
+
+nnoremap ]t :tnext<CR>
+nnoremap [t :tprev<CR>
+nnoremap [T :tfirst<CR>
+nnoremap ]T :tlast<CR>
+
+" Scroll through history command using Emacs chords while preserving the
+" filtering offered by the cursor keys. For example, if the command contains
+" ':h ', typing <Up> would only show those commands starting with ':h '.
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+nnoremap <leader>a :Ack 
+
+map <leader>t :NERDTreeToggle<CR>
+
+" Not sure I'll return to YankRing
+" nnoremap <silent> <leader>r :YRShow<CR>
+
+" Abbreviations {{{1
+
+iabbr destory destroy
+iabbr reponse response
+
+" Whitespace prefs and filetypes {{{1
+
+autocmd BufNewFile,BufRead *.gradle set filetype=groovy
+autocmd BufNewFile,BufRead *.tmpl setfiletype html
+autocmd BufNewFile,BufRead *.mustache set filetype=html
+autocmd BufNewFile,BufRead *.handlebars set filetype=html
+
+" Setting local FileType
+" autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+
+" Netrw config {{{1
+
+let g:netrw_liststyle = 3
+
+" Lifted from Practical Vim {{{1
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" Source proj specific setup {{{1
+if filereadable(".vimrc.paulcarey.custom")
+  so .vimrc.paulcarey.custom
+endif
+
+" Inline plugins {{{1
+
+" Visual star - * and # search for the visual selection
+function! s:VSetSearch()
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
+
+" Qargs - populate args with each of the files named in the quickfix list
+command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+
+let g:netrw_liststyle=4
+
