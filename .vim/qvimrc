@@ -1,5 +1,10 @@
 set nocompatible
 
+" See also https://github.com/dag/vim-fish
+if $SHELL =~ 'fish'
+  set shell=/bin/sh
+endif
+
 " Load Vundle plugins {{{1
 " ------------------------
 "
@@ -135,7 +140,7 @@ nnoremap ]T :tlast<CR>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack
 
 map <leader>t :NERDTreeToggle<CR>
 

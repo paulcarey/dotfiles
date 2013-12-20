@@ -1,5 +1,10 @@
 set nocompatible
 
+" See also https://github.com/dag/vim-fish
+if $SHELL =~ 'fish'
+  set shell=/bin/sh
+endif
+
 " Load Vundle plugins {{{1
 " ------------------------
 "
@@ -47,6 +52,14 @@ Bundle 'michaeljsmith/vim-indent-object'
 
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'goldfeld/vim-seek'
+
+Bundle 'dag/vim-fish'
+Bundle 'bling/vim-airline'
+Bundle 'edkolev/tmuxline.vim'
+Bundle 'zaiste/tmux.vim'
+
+Bundle 'guns/vim-sexp'
+Bundle 'amdt/vim-niji'
 
 " To consider:
 
@@ -184,14 +197,14 @@ nnoremap ]Q :clast<CR>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <leader>k :Ack! 
-nnoremap <leader>a :Ag 
+nnoremap <leader>k :Ack!
+nnoremap <leader>a :Ag
 
 map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
 " Mnemonic is m for method, f for function or t for tag would be better
-nnoremap <leader>m :tag 
+nnoremap <leader>m :tag
 
 nnoremap <leader>p :CtrlPClearCache<CR>
 
@@ -204,7 +217,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
 " Filter the current file through ack - better than :g/
-" map filter :%! ack 
+" map filter :%! ack
 
 map <leader>r :wa <bar> !bin/testunit %<CR>
 
@@ -297,5 +310,4 @@ function! CoffeeScriptIncludeExpr()
   let fn = parts[-1]
   return join([fn, '.js.coffee'], '')
 endfunction
-
 
