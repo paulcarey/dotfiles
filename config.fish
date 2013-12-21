@@ -44,5 +44,6 @@ function cfe
   coffee -bps $argv
 end
 
-set PATH /usr/local/bin ~/bin /usr/bin /bin /usr/sbin /sbin
+status --is-interactive; and . (rbenv init -|psub)
 
+set PATH (rbenv root)/shims /usr/local/bin ~/bin /usr/bin /bin /usr/sbin /sbin
