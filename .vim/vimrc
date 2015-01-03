@@ -41,7 +41,7 @@ Bundle 'groenewege/vim-less'
 
 Bundle 'kchmck/vim-coffee-script'
 
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 
 Bundle 'vim-scripts/VimClojure'
 Bundle 'derekwyatt/vim-scala'
@@ -51,7 +51,6 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'michaeljsmith/vim-indent-object'
 
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'goldfeld/vim-seek'
 
 Bundle 'dag/vim-fish'
 Bundle 'bling/vim-airline'
@@ -197,8 +196,7 @@ nnoremap ]Q :clast<CR>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <leader>k :Ack!
-nnoremap <leader>a :Ag
+nnoremap <leader>a :Ag 
 
 map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
@@ -220,6 +218,8 @@ nnoremap <leader>gd :Gdiff<CR>
 " map filter :%! ack
 
 map <leader>r :wa <bar> !bin/testunit %<CR>
+
+map <leader>o /\v^\s+-
 
 " Abbreviations {{{1
 
@@ -311,3 +311,26 @@ function! CoffeeScriptIncludeExpr()
   return join([fn, '.js.coffee'], '')
 endfunction
 
+
+"
+" Minimal mappings for easymotion - taken from its readme
+"
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s2)
+
+" Turn on case sensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+set noswapfile
