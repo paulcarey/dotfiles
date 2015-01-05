@@ -1,2 +1,5 @@
-bind -v
-bind \\t rl_complete
+# bind -v
+# bind \\t rl_complete
+
+bind -e
+

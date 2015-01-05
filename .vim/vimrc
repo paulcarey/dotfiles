@@ -311,6 +311,7 @@ function! CoffeeScriptIncludeExpr()
   return join([fn, '.js.coffee'], '')
 endfunction
 
+set noswapfile
 
 "
 " Minimal mappings for easymotion - taken from its readme
