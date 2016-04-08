@@ -106,7 +106,6 @@ PS1="${CYAN}\W${OFF} \$ "
 # PS1="${CYAN}\\A : \\W${OFF} \\$ "
 # if [ -n "$PS1" ]; then PS1='\[\033[0;35m\]\A : \W \[\033[0m\]\$ '; fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 uuid () {
   ruby -r uuidtools -e 'puts UUIDTools::UUID.random_create.to_s.split("-")[0]'
@@ -156,4 +155,3 @@ save () {
 source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
 shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

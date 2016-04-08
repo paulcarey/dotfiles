@@ -10,12 +10,18 @@ endif
 "
 " Vundle config
 "
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " To consider:
 " Bundle 'tpope/vim-eunuch'

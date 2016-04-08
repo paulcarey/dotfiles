@@ -2,6 +2,10 @@ function cdtr
   cd ~/dev/projects/totalrecallr
 end
 
+function vimt
+  vim -c 'NERDTree'
+end
+
 function gst
   git status
 end
@@ -44,14 +48,14 @@ function cfe
   coffee -bps $argv
 end
 
-status --is-interactive; and . (rbenv init -|psub)
+# status --is-interactive; and . (rbenv init -|psub)
 
-set PATH (rbenv root)/shims /usr/local/bin ~/bin /usr/bin /bin /usr/sbin /sbin
+# set PATH (rbenv root)/shims /usr/local/bin ~/bin /usr/bin /bin /usr/sbin /sbin
 set PATH /usr/bin /bin /usr/sbin /sbin
 set PATH /usr/local/bin ~/bin $PATH
-set PATH (rbenv root)/shims $PATH
+# set PATH (rbenv root)/shims $PATH
 set PATH /Applications/Postgres93.app/Contents/MacOS/bin $PATH
-set PATH ~/dev/runtimes/scala-2.10.3/bin/ $PATH
+set PATH ~/dev/runtimes/scala/scala-2.10.3/bin $PATH
 
 set -x EDITOR /usr/local/bin/vim
 
