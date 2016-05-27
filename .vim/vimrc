@@ -33,6 +33,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
 
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
@@ -145,7 +146,9 @@ set sidescroll=1
 set sidescrolloff=5
 
 set background=dark
-colorscheme solarized
+
+" colorscheme solarized
+colorscheme base16-atelierseaside
 
 let NERDTreeWinSize=50
 
@@ -155,6 +158,9 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+
+" Copy to system clipboard by default
+set clipboard=unnamed
 
 " Mappings {{{1
 
