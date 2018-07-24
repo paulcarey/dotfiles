@@ -1,6 +1,8 @@
 set nocompatible
 set encoding=utf-8
 
+set termguicolors
+
 " See also https://github.com/dag/vim-fish
 if $SHELL =~ 'fish'
   set shell=/bin/sh
@@ -56,10 +58,12 @@ Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'dag/vim-fish'
 Plugin 'bling/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'zaiste/tmux.vim'
+" Plugin 'edkolev/tmuxline.vim'
+" Plugin 'zaiste/tmux.vim'
 
 Plugin 'guns/vim-sexp'
+
+Plugin 'morhetz/gruvbox'
 
 " To consider:
 
@@ -145,10 +149,10 @@ set scrolloff=5
 set sidescroll=1
 set sidescrolloff=5
 
-set background=dark
 
 " colorscheme solarized
-colorscheme base16-atelierseaside
+" colorscheme base16-atelierseaside
+" colorscheme mac_classic
 
 let NERDTreeWinSize=50
 
@@ -234,6 +238,7 @@ map <leader>o /\v^\s+-
 
 iabbr destory destroy
 iabbr reponse response
+iabbr infi ∞
 
 " Useful for Jasmine specs
 "
@@ -344,3 +349,14 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 set noswapfile
+
+nnoremap <leader>c :set nonumber!<CR>
+nnoremap <leader>w :set nowrap!<CR>
+
+let g:markdown_folding = 1
+nnoremap <Space> za
+
+colorscheme gruvbox
+
+set background=dark
+

@@ -1,7 +1,8 @@
 "
 set guioptions-=T
 " set guifont=Monaco:h12
-set guifont=Source\ Code\ Pro\ Light:h13
+set guifont=Source\ Code\ Pro\ Light:h10
+" set guifont=Source\ Code\ Pro\ Regular:h12
 " set guifont=Inconsolata:h15
 " set guifont=Terminus:h16
 set lines=35
@@ -24,21 +25,6 @@ set cursorline
 
 " Autosave when MacVim loses focus
 au FocusLost * silent! wa
-
-function! Medio()
-  set lines=55
-  set columns=130
-endfunction
-
-function! Grande()
-  set lines=49
-  set columns=179
-endfunction
-
-function! Maximo()
-  set lines=1000
-  set columns=1000
-endfunction
 
 nnoremap <D-1> 1gt<CR>
 nnoremap <D-2> 2gt<CR>

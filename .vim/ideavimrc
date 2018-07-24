@@ -1,0 +1,52 @@
+let mapleader = ","
+
+set surround
+"
+" Copy to system clipboard by default
+set clipboard=unnamed
+
+set wildmenu
+set wildmode=longest,list
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set backspace=indent,eol,start
+
+set gdefault
+
+set nofoldenable
+
+set nojoinspaces
+
+" Useful for html and css
+set iskeyword+=-
+
+" Appearance {{{1
+
+set listchars=tab:▸\ ,eol:¬
+set cursorline
+set ruler
+set laststatus=2
+set showcmd
+set number
+set cmdheight=2
+set visualbell
+set t_vb=
+set scrolloff=5
+set sidescroll=1
+set sidescrolloff=5
+
+map Y y$
+nmap <leader>n :nohlsearch<CR>
+map <leader>l :set list!<CR>
+map <F7> :set relativenumber!<CR>
+
+" Operate on display lines by default
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
