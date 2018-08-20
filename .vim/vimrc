@@ -263,6 +263,7 @@ autocmd User Rails.javascript.coffee* nunmap <buffer> gf
 
 " Setting local FileType
 " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+autocmd FileType scala setlocal ts=2 sts=2 sw=2 et
 
 " Netrw config {{{1
 
@@ -359,4 +360,13 @@ nnoremap <Space> za
 colorscheme gruvbox
 
 set background=dark
+
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n> 
+  tnoremap <C-v><Esc> <Esc>
+  highlight! link TermCursor Cursor
+  highlight! TermCursorNC guibg='#af3a03' guifg='#eeeeee' ctermbg=1 ctermfg=15
+endif
+
+au BufLeave * silent! wa
 
