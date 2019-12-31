@@ -1,8 +1,8 @@
 "
 set guioptions-=T
 " set guifont=Monaco:h12
-set guifont=Source\ Code\ Pro\ Light:h10
-" set guifont=Source\ Code\ Pro\ Regular:h12
+set guifont=Source\ Code\ Pro:h14
+" set guifont=Source\ Code\ Pro\ Light:h10
 " set guifont=Inconsolata:h15
 " set guifont=Terminus:h16
 set lines=35

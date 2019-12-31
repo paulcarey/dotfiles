@@ -40,7 +40,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-markdown'
 Plugin 'groenewege/vim-less'
 
 Plugin 'kchmck/vim-coffee-script'
@@ -227,6 +227,10 @@ nnoremap <leader>z :Tabularize /
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
+" https://superuser.com/questions/656949/always-show-the-register-list-in-vim
+" Also see https://github.com/junegunn/vim-peekaboo
+nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+
 " Filter the current file through ack - better than :g/
 " map filter :%! ack
 
@@ -239,11 +243,6 @@ map <leader>o /\v^\s+-
 iabbr destory destroy
 iabbr reponse response
 iabbr infi ∞
-
-" Useful for Jasmine specs
-"
-abbr desc describe '', -><ESC>F'i
-abbr itsh it 'should ', -><ESC>F'i
 
 
 " Whitespace prefs and filetypes {{{1
@@ -354,12 +353,12 @@ set noswapfile
 nnoremap <leader>c :set nonumber!<CR>
 nnoremap <leader>w :set nowrap!<CR>
 
-let g:markdown_folding = 1
+" let g:markdown_folding = 1
 nnoremap <Space> za
 
 colorscheme gruvbox
 
-set background=dark
+set background=light
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n> 
